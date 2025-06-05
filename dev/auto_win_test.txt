@@ -1,0 +1,106 @@
+# Tried with Tkinter code
+
+# Constants used for verification :
+"""
+self.WIDTH = 520
+self.HEIGHT = 560
+
+self.CELL_SIZE = 26
+
+
+self.CANVAS_HEIGHT = 520
+"""
+
+
+# In the "__init__" method :
+"""
+self.spawn_to_border = 0
+self.go_to_border_to_top = False
+self.border_to_top = 0
+
+self.boucle_infinie = False
+
+self.to_left = 0
+self.go_left = True
+self.to_down_first = 0
+self.go_down_first = False
+self.to_down = 0
+self.go_down = False
+self.to_up = 0
+self.go_up = False
+
+self.go_right_down = False
+self.go_right_up = False
+self.up_full = 0
+self.to_right = 0
+"""
+
+# In the "move" method :
+"""
+self.spawn_to_border += 1
+if self.spawn_to_border == 7:
+    self.snake_direction = "up"
+    self.go_to_border_to_top = True
+if self.go_to_border_to_top:
+    self.border_to_top += 1
+    if self.border_to_top == 10:
+        self.go_to_border_to_top = False
+        self.snake_direction = "left"
+        self.boucle_infinie = True
+
+if self.is_playing:
+    if self.boucle_infinie:
+        if self.to_right == 17:
+
+            self.snake_direction = "up"
+            self.up_full += 1
+
+            if self.up_full == 17:
+                self.up_full = 0
+                self.to_right = 0
+                self.go_left = True
+
+
+        elif self.go_left:
+            self.snake_direction = "left"
+            self.to_left += 1
+            if self.to_left == 17:
+                self.go_left = False
+                self.to_left = 0
+
+                self.go_down_first = True
+        elif self.go_down_first:
+            self.snake_direction = "down"
+            self.to_down_first += 1
+            if self.to_down_first == 17:
+                self.go_down_first = False
+                self.to_down_first = 0
+
+                self.go_right_up = True
+        elif self.go_right_up:
+            self.snake_direction = "right"
+            self.go_right_up = False
+            self.to_right += 1
+            self.go_up = True
+        elif self.go_up:
+            self.snake_direction = "up"
+            self.to_up += 1
+            if self.to_up == 16:
+                self.go_up = False
+                self.to_up = 0
+
+                self.go_right_down = True
+        elif self.go_right_down:
+            self.snake_direction = "right"
+            self.go_right_down = False
+            self.to_right += 1
+            self.go_down = True
+        elif self.go_down:
+            self.snake_direction = "down"
+            self.to_down += 1
+            if self.to_down == 16:
+                self.go_down = False
+                self.to_down = 0
+
+                self.go_right_up = True
+"""
