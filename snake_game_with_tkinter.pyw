@@ -2,12 +2,16 @@ import tkinter
 import random
 import cryptography.fernet
 
+from pathlib import Path
+
+CHEMIN_MAIN = Path(__file__).resolve().parent
+
 
 class Game:
 
     def __init__(self):
         self.window = tkinter.Tk()
-        self.window.title("Snake Game")
+        self.window.title("Snake Game with Tkinter")
 
         self.WIDTH = 520
         self.HEIGHT = 560
@@ -54,7 +58,7 @@ class Game:
             self.high_score = int(self.decrypt_high_score())
             assert 0 <= self.high_score <= ((self.WIDTH - 2 * self.CELL_SIZE) // self.CELL_SIZE) ** 2
         except (Exception,):
-            with open("high_score_tkinter_game.txt", "wb") as file:
+            with open(f"{CHEMIN_MAIN}/high_score_tkinter_game.txt", "wb") as file:
                 file.write(b"")
 
         self.high_score_label = tkinter.Label(self.frame, text=f"Best Score : {self.high_score}",
@@ -78,11 +82,11 @@ class Game:
         self.window.mainloop()
 
     def encrypt_high_score(self, value):
-        with open("high_score_tkinter_game.txt", "wb") as file:
+        with open(f"{CHEMIN_MAIN}/high_score_tkinter_game.txt", "wb") as file:
             file.write(self.fernet.encrypt(value))
 
     def decrypt_high_score(self):
-        with open("high_score_tkinter_game.txt", "rb") as file:
+        with open(f"{CHEMIN_MAIN}/high_score_tkinter_game.txt", "rb") as file:
             return self.fernet.decrypt(file.read())
 
     def display_frame(self):
