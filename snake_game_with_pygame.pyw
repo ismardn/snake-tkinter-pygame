@@ -3,12 +3,16 @@ import random
 import cryptography.fernet
 import time
 
+from pathlib import Path
+
+CHEMIN_MAIN = Path(__file__).resolve().parent
+
 
 class Game:
 
     def __init__(self):
         pygame.init()
-        pygame.display.set_caption("Snake Game")
+        pygame.display.set_caption("Snake Game with Pygame")
 
         self.WIDTH = 520
         self.HEIGHT = 560
@@ -46,7 +50,7 @@ class Game:
             self.high_score = int(self.decrypt_high_score())
             assert 0 <= self.high_score <= ((self.WIDTH - 2 * self.CELL_SIZE) // self.CELL_SIZE) ** 2
         except (Exception,):
-            with open("high_score_tkinter_game.txt", "wb") as file:
+            with open(f"{CHEMIN_MAIN}/high_score_pygame_game.txt", "wb") as file:
                 file.write(b"")
 
         self.create_high_score_text(self.high_score)
@@ -105,11 +109,11 @@ class Game:
         self.window.blit(high_score_text, high_score_text_rectangle)
 
     def encrypt_high_score(self, value):
-        with open("high_score_pygame_game.txt", "wb") as file:
+        with open(f"{CHEMIN_MAIN}/high_score_pygame_game.txt", "wb") as file:
             file.write(self.fernet.encrypt(value))
 
     def decrypt_high_score(self):
-        with open("high_score_pygame_game.txt", "rb") as file:
+        with open(f"{CHEMIN_MAIN}/high_score_pygame_game.txt", "rb") as file:
             return self.fernet.decrypt(file.read())
 
     def create_snake(self):
