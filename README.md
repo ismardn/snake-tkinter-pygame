@@ -1,4 +1,4 @@
-# Snake – Version Tkinter & Pygame
+# Jeu Snake - Tkinter & Pygame
 
 Ce projet propose deux versions du jeu Snake, réalisées avec **Tkinter** et **Pygame**.  
 L’objectif était de recréer exactement le même jeu avec ces deux bibliothèques pour m'entraîner à les utiliser en parallèle.
@@ -20,7 +20,7 @@ Le meilleur score est automatiquement sauvegardé et **chiffré** dans un fichie
 
 ## Lancer le jeu
 
-Assurez-vous d’avoir Python 3 installé ainsi que la bibliothèque `pygame` si vous utilisez la version Pygame.
+Assurez-vous d’avoir Python 3 d'installé ainsi que la bibliothèque `pygame` si vous utilisez la version Pygame.
 
 ```bash
 # Pour Tkinter
